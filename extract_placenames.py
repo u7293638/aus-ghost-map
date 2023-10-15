@@ -8,11 +8,15 @@ import re
 import nltk
 from nltk import word_tokenize, pos_tag, ne_chunk
 from nltk.chunk import conlltags2tree, tree2conlltags
+import extract_ghost_titled
 
 filename = input("Filename: ")
 
+# extract_ghost_titled.extract_ghost_titles(filename)
+
 # Import the csv file
 df = pd.read_csv(filename + "_w_ghost_title.csv")
+df.fillna('Empty', inplace=True)
 
 def get_placenames(text):
 

@@ -1,0 +1,121 @@
+{
+    "@context": "https://w3id.org/ro/crate/1.1/context",
+    "@graph": [
+        {
+            "@id": "ro-crate-metadata.json",
+            "@type": "CreativeWork",
+            "about": {
+                "@id": "./"
+            },
+            "conformsTo": {
+                "@id": "https://w3id.org/ro/crate/1.1"
+            },
+            "license": {
+                "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+            }
+        },
+        {
+            "@id": "./",
+            "@type": "Dataset",
+            "datePublished": "2023-10-15T07:17:28+00:00",
+            "hasPart": [
+                {
+                    "@id": "harvester_config.json"
+                },
+                {
+                    "@id": "text"
+                },
+                {
+                    "@id": "results.csv"
+                }
+            ],
+            "mainEntity": {
+                "@id": "#harvester_run"
+            }
+        },
+        {
+            "@id": "harvester_config.json",
+            "@type": "File",
+            "encodingFormat": "application/json",
+            "name": "Trove Newspaper Harvester configuration file"
+        },
+        {
+            "@id": "text",
+            "@type": [
+                "File",
+                "Dataset"
+            ],
+            "dateCreated": "2023-10-15T08:52:25.033232+00:00",
+            "description": "There is one text file per article. The file titles include basic article metadata \u2013 the date of the article, the id number of the newspaper, and the id number of the article.",
+            "license": {
+                "@id": "http://rightsstatements.org/vocab/CNE/1.0/"
+            },
+            "name": "Text files harvested from articles",
+            "size": 119900
+        },
+        {
+            "@id": "results.csv",
+            "@type": [
+                "File",
+                "Dataset"
+            ],
+            "contentSize": 55572765,
+            "dateCreated": "2023-10-15T08:52:37.891205+00:00",
+            "encodingFormat": "text/csv",
+            "license": {
+                "@id": "http://rightsstatements.org/vocab/NKC/1.0/"
+            },
+            "name": "Metadata of harvested articles in CSV format",
+            "size": 119900
+        },
+        {
+            "@id": "#harvester_run",
+            "@type": "CreateAction",
+            "actionStatus": {
+                "@id": "http://schema.org/CompletedActionStatus"
+            },
+            "endDate": "2023-10-15T08:52:25.033232+00:00",
+            "instrument": "https://github.com/wragge/trove-newspaper-harvester",
+            "name": "Run of harvester",
+            "object": "harvester_config.json",
+            "result": [
+                {
+                    "@id": "text"
+                },
+                {
+                    "@id": "results.csv"
+                }
+            ],
+            "startDate": "2023-10-15T07:17:28.812734+00:00"
+        },
+        {
+            "@id": "https://github.com/wragge/trove-newspaper-harvester",
+            "@type": "SoftwareApplication",
+            "description": "The Trove Newspaper (& Gazette) Harvester makes it easy to download large quantities of digitised articles from Trove\u2019s newspapers and gazettes.",
+            "documentation": "https://wragge.github.io/trove-newspaper-harvester/",
+            "name": "Trove Newspaper and Gazette Harvester",
+            "softwareVersion": "0.7.1",
+            "url": "https://github.com/wragge/trove-newspaper-harvester"
+        },
+        {
+            "@id": "http://rightsstatements.org/vocab/NKC/1.0/",
+            "@type": "CreativeWork",
+            "description": "The organization that has made the Item available reasonably believes that the Item is not restricted by copyright or related rights, but a conclusive determination could not be made.",
+            "name": "No Known Copyright",
+            "url": "http://rightsstatements.org/vocab/NKC/1.0/"
+        },
+        {
+            "@id": "http://rightsstatements.org/vocab/CNE/1.0/",
+            "@type": "CreativeWork",
+            "description": "The copyright and related rights status of this Item has not been evaluated.",
+            "name": "Copyright Not Evaluated",
+            "url": "http://rightsstatements.org/vocab/CNE/1.0/"
+        },
+        {
+            "@id": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "@type": "CreativeWork",
+            "name": "CC0 Public Domain Dedication",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+        }
+    ]
+}

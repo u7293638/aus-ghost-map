@@ -1,0 +1,22 @@
+{
+    "query_params": {
+        "q": "ghost date:[* TO 1900-12-31T00:00:00Z]",
+        "l-category": [
+            "Article"
+        ],
+        "category": "newspaper",
+        "encoding": "json",
+        "reclevel": "full",
+        "bulkHarvest": "true",
+        "include": [
+            "articleText"
+        ]
+    },
+    "key": "HnzZP2mKXnDJJwpKYE6ZT28Pra0vL364",
+    "full_harvest_dir": "data/20231015071728",
+    "maximum": null,
+    "text": true,
+    "pdf": false,
+    "image": false,
+    "include_linebreaks": false
+}
