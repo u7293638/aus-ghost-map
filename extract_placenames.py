@@ -17,8 +17,12 @@ filename = input("Filename: ")
 # Import the csv file
 df = pd.read_csv(filename + "_w_ghost_title.csv")
 df.fillna('Empty', inplace=True)
+loc_column = input("Which column do you want to search for placenames? ")
 
-def get_placenames(text):
+
+def get_placenames(text_id):
+    with open("ghost_australia/" + text_id, errors='ignore') as f:
+            text = f.read()
 
     placenames = []
     tokenized_text = word_tokenize(text)
@@ -45,14 +49,18 @@ def get_placenames(text):
     if current_place:
         placenames.append(' '.join(current_place))
 
+    print(text_id)
     print(placenames)
     return ', '.join(placenames) 
+    
 
 
 # Apply the function to the 'para' column to create the 'placenames' column
 # Change the column name from 'para' to whatever the column name is in your csv file
-df['placenames'] = df['abstract'].apply(get_placenames)
+counter = 0
+df['placenames'] = df[loc_column].apply(get_placenames)
 print(df)
+
 
 # Export the dataframe as a csv file
 df.to_csv(filename + '_w_placenames.csv', index=False)
