@@ -20,6 +20,7 @@ df.fillna('Empty', inplace=True)
 loc_column = input("Which column do you want to search for placenames? ")
 
 
+
 def get_placenames(text_id):
     with open("ghost_australia/" + text_id, errors='ignore') as f:
             text = f.read()
@@ -54,10 +55,8 @@ def get_placenames(text_id):
     return ', '.join(placenames) 
     
 
-
 # Apply the function to the 'para' column to create the 'placenames' column
 # Change the column name from 'para' to whatever the column name is in your csv file
-counter = 0
 df['placenames'] = df[loc_column].apply(get_placenames)
 print(df)
 
