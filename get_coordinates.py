@@ -34,7 +34,8 @@ for index, row in df.iterrows():
         for placename in re.split(', ', placenames):
             if placename != "Empty" and placename != "" and placename != "None":
                 url = "http://tlcmap.org/ghap/search?fuzzyname=" + placename + "&format=json"
-                print(str(df.iloc[index]['line_num']) + ': ' + url)
+                print(url)
+                #print(str(df.iloc[index]['line_num']) + ': ' + url)
                 coords = get_coords(url)
                 if coords == []:
                     continue
