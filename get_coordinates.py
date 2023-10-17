@@ -31,9 +31,9 @@ def get_coords(url):
 for index, row in df.iterrows():
     placenames = df.iloc[index]['placenames']
     if placenames != "Empty" and not pd.isnull(placenames) and placenames != "" and placenames != "None":
-        for placename in re.split(', ', placenames):
-            if placename != "Empty" and placename != "" and placename != "None":
-                url = "http://tlcmap.org/ghap/search?fuzzyname=" + placename + "&format=json"
+        #for placename in re.split(', ', placenames):
+            #if placename != "Empty" and placename != "" and placename != "None":
+                url = "http://tlcmap.org/ghap/search?fuzzyname=" + placenames + "&format=json"
                 print(url)
                 #print(str(df.iloc[index]['line_num']) + ': ' + url)
                 coords = get_coords(url)
@@ -43,7 +43,7 @@ for index, row in df.iterrows():
 
                     latitudes.append(coords[0])
                     longitudes.append(coords[1])
-                    break
+                    #break
 
 coords_d = d = {'latitude': latitudes, 'longitude': longitudes}
 coords_df = pd.DataFrame(data=coords_d)
