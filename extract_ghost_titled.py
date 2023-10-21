@@ -2,7 +2,7 @@
 This program extracts all the rows which contain the word 'Ghost' in the
 title of the article.
 """
-import pandas as pd
+df
 import re
 
 # Keywords to search for in title

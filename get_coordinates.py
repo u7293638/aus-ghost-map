@@ -17,33 +17,57 @@ def get_coords(url):
     try:
         coord_data = requests.get(url).json()
     except:
-        print("JSON Decode Error")
-        return ['Empty','Empty']
+        print("GET query error")
+        return []
     #coord_data = json.loads(urlopen(url).read().decode('utf-8'))
     if coord_data['features'] == []:
-        return ['Empty','Empty']
+        print("Features empty")
+        return []
     else:
-        latitude = coord_data['features'][0]['properties']['latitude']
-        longitude = coord_data['features'][0]['properties']['longitude']
-        print(latitude + ', ' + longitude)
-        return [latitude, longitude]
+        try:
+            latitude = coord_data['features'][0]['properties']['latitude']
+            longitude = coord_data['features'][0]['properties']['longitude']
+            return [latitude, longitude]
+        except:
+            print("No longitude/latitude field")
+            return []
 
+# iterate through rows
 for index, row in df.iterrows():
+    # isolate placenames column
     placenames = df.iloc[index]['placenames']
-    if placenames != "Empty" and not pd.isnull(placenames) and placenames != "" and placenames != "None":
-        #for placename in re.split(', ', placenames):
-            #if placename != "Empty" and placename != "" and placename != "None":
-                url = "http://tlcmap.org/ghap/search?fuzzyname=" + placenames + "&format=json"
-                print(url)
+    # if the placenames column is empty, go to next row
+    if placenames == "Empty" or pd.isnull(placenames) or placenames == "" or placenames == "None":
+        print(str(index) + "empty")
+        counter += 1
+        latitudes.append('Empty')
+        longitudes.append('Empty')
+    else:
+        # split the placenames column into a list
+        placenames_list = re.split(', ', placenames)
+        # iterate through places
+        for place in placenames_list:
+            if place != "":
+                url = "http://ghap.tlcmap.org/places?fuzzyname=" + place + "&format=json"
+                print(str(index) + url)
                 #print(str(df.iloc[index]['line_num']) + ': ' + url)
                 coords = get_coords(url)
                 if coords == []:
                     continue
                 else:
-
+                    counter +=1
                     latitudes.append(coords[0])
                     longitudes.append(coords[1])
-                    #break
+                    print(coords)
+                    break
+        # if loop iterates through all places and finds no coordinates
+        if len(latitudes) == index:
+            counter += 1
+            latitudes.append('Empty')
+            longitudes.append('Empty')
+            print("Empty", "Empty")
+        # if counter == 32:
+        #     break
 
 coords_d = d = {'latitude': latitudes, 'longitude': longitudes}
 coords_df = pd.DataFrame(data=coords_d)
