@@ -44,30 +44,28 @@ for index, row in df.iterrows():
         longitudes.append('Empty')
     else:
         # split the placenames column into a list
-        placenames_list = re.split(', ', placenames)
+        # placenames_list = re.split(', ', placenames)
         # iterate through places
-        for place in placenames_list:
-            if place != "":
-                url = "http://ghap.tlcmap.org/places?fuzzyname=" + place + "&format=json"
-                print(str(index) + url)
-                #print(str(df.iloc[index]['line_num']) + ': ' + url)
-                coords = get_coords(url)
-                if coords == []:
-                    continue
-                else:
-                    counter +=1
-                    latitudes.append(coords[0])
-                    longitudes.append(coords[1])
-                    print(coords)
-                    break
-        # if loop iterates through all places and finds no coordinates
-        if len(latitudes) == index:
-            counter += 1
-            latitudes.append('Empty')
-            longitudes.append('Empty')
-            print("Empty", "Empty")
-        # if counter == 32:
-        #     break
+        #for place in placenames_list:
+        if placenames != "":
+            url = "http://ghap.tlcmap.org/places?fuzzyname=" + placenames + "&format=json"
+            print(str(index) + url)
+            #print(str(df.iloc[index]['line_num']) + ': ' + url)
+            coords = get_coords(url)
+            if coords == []:
+                continue
+            else:
+                counter +=1
+                latitudes.append(coords[0])
+                longitudes.append(coords[1])
+                print(coords)
+                # break
+    # if loop iterates through all places and finds no coordinates
+    if len(latitudes) == index:
+        counter += 1
+        latitudes.append('Empty')
+        longitudes.append('Empty')
+        print("Empty", "Empty")
 
 coords_d = d = {'latitude': latitudes, 'longitude': longitudes}
 coords_df = pd.DataFrame(data=coords_d)
