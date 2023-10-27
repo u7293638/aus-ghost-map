@@ -1,6 +1,6 @@
 """
-This program extracts all the rows which contain the word 'Ghost' in the
-title of the article.
+This program removes all the placenames which match 
+defined foreign placenames in the placenames column.
 """
 import pandas as pd
 import re

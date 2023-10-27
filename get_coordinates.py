@@ -1,3 +1,10 @@
+"""
+This program takes in a csv file and extracts the 
+coordinates from the first hit on the placenames in 
+that row when searched on TLC Map.org. It then adds 
+two new columns to the csv file with the extracted 
+longitude and latitude.
+"""
 import pandas as pd
 import re
 import json

@@ -1,6 +1,8 @@
 """
-This program extracts all the rows which contain the word 'Ghost' in the
-title of the article.
+This program extracts all the rows which contain 
+the word 'Ghost' in the title of the article, then 
+outputs a csv file with the original name with suffix
+"_w_ghost_title"
 """
 df
 import re
